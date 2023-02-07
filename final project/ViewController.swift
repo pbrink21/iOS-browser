@@ -174,13 +174,13 @@ class ViewController: UIViewController, WKUIDelegate, UITextFieldDelegate, WKNav
 				urlString = patchPartialUrl(url: input)
             } else {
                 //We have a query so we should use a search engine
-                urlString = getSearchEngineLink() + input
+				urlString = getSearchEngineLink() + input.replacingOccurrences(of: " ", with: "+")
             }
         } else {
             //If left blank or something, go to homepage
             urlString = getHomepage()
         }
-        
+		
         let request = URLRequest(url: URL(string: urlString)!)
         webView.load(request)
     }
